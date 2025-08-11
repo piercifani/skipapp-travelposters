@@ -48,19 +48,11 @@ let package = Package(
         .testTarget(
             name: "TravelPostersModelTests",
             dependencies: [
-                "TravelPostersModel",
-                .product(
-                    name: "SkipTest",
-                    package: "skip"
-                )
+                "TravelPostersModel"
             ],
             resources: [.process(
                 "Resources"
             )],
-            plugins: [.plugin(
-                name: "skipstone",
-                package: "skip"
-            )]
         ),
     ]
 )

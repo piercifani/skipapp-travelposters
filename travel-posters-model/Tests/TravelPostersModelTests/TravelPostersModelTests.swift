@@ -1,4 +1,4 @@
-import XCTest
+import Testing
 #if os(Android)
 import SkipFuse
 #else
@@ -9,16 +9,17 @@ import Foundation
 
 let logger: Logger = Logger(subsystem: "TravelPostersModel", category: "Tests")
 
-@available(macOS 13, *)
-final class TravelPostersModelTests: XCTestCase {
-    func testTravelPostersModel() throws {
+struct TravelPostersModelTests {
+    
+    @Test
+    func travelPostersModel() throws {
         logger.log("running testTravelPostersModel")
-        XCTAssertEqual(1 + 2, 3, "basic test")
+        #expect(1 + 2 == 3, "basic test")
         
         // load the TestData.json file from the Resources folder and decode it into a struct
-        let resourceURL: URL = try XCTUnwrap(Bundle.module.url(forResource: "TestData", withExtension: "json"))
+        let resourceURL: URL = try #require(Bundle.module.url(forResource: "TestData", withExtension: "json"))
         let testData = try JSONDecoder().decode(TestData.self, from: Data(contentsOf: resourceURL))
-        XCTAssertEqual("TravelPostersModel", testData.testModuleName)
+        #expect("TravelPostersModel" == testData.testModuleName)
     }
 }
 
