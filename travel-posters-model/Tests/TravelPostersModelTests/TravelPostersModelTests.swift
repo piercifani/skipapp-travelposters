@@ -1,5 +1,9 @@
 import XCTest
+#if os(Android)
+import SkipFuse
+#else
 import OSLog
+#endif
 import Foundation
 @testable import TravelPostersModel
 

@@ -1,14 +1,21 @@
 import Foundation
-import Combine
-
+import SkipFuse
+import Observation
+#if canImport(FoundationEssentials)
+import FoundationEssentials
+#endif
 /// A manager for loading the cities list and handling user favorites
-public class CityManager : ObservableObject {
+@Observable
+public class CityManager {
     /// The JSON list of cities stored with the app
     static let localCitiesURL: URL = Bundle.module.url(forResource: "Cities", withExtension: "json")!
 
     /// The JSON containing the user-selected list of favorite city IDs
+    #if os(Android)
+    static let favoritesURL: URL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("favorites.json")
+    #else
     static let favoritesURL: URL = URL.documentsDirectory.appendingPathComponent("favorites.json")
-
+    #endif
     /// The app-wide singleton `CityManager`
     public static let shared = CityManager()
 
@@ -32,10 +39,10 @@ public class CityManager : ObservableObject {
     }
 
     /// All the cities in the list
-    @Published public var allCities: [City] = []
+    public var allCities: [City] = []
 
     /// The ordered list of favorites specified by the user; changed will be persisted to the JSON file
-    @Published public var favoriteIDs: Array<City.ID> = [] {
+    public var favoriteIDs: Array<City.ID> = [] {
         didSet {
             logger.log("saving favorites: \(self.favoriteIDs)")
             do {

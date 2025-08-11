@@ -2,7 +2,7 @@ import SwiftUI
 import TravelPostersModel
 
 struct CityListView: View {
-    @StateObject var cityManager = CityManager.shared
+    @State var cityManager = CityManager.shared
 
     var body: some View {
         ScrollView {

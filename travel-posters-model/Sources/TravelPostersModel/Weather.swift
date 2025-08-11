@@ -1,5 +1,7 @@
 import Foundation
-
+#if canImport(FoundationNetworking)
+import FoundationNetworking
+#endif
 /// A JSON response from the open-meteo.com weather service
 ///
 /// See https://github.com/open-meteo/sdk.git for a more complete SDK

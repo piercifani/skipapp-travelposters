@@ -1,0 +1,6 @@
+**/.idea
+**/xcuserdata
+**.xcuserdatad
+**/.swiftpm
+**/.DS_Store
+travel-posters-model/.build
