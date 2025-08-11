@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "tools.skip.travelposters"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "tools.skip.travelposters"
@@ -52,6 +52,7 @@ android {
 
 dependencies {
 
+    implementation(libs.bundles.coroutines)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
