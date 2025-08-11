@@ -44,7 +44,7 @@ import kotlin.math.roundToInt
 @Composable
 fun CityPoster(city: City, isFavorite: () -> Boolean, setFavorite: (Boolean) -> Unit) {
     Box {
-        val urlString = city.imageURL.absoluteString
+        val urlString = city.imageURL.toString()
         AsyncImage(
             model = ImageRequest.Builder(LocalContext.current)
                 .data(urlString)

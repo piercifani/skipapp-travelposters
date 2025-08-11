@@ -38,6 +38,14 @@ public class CityManager {
         }
     }
 
+    public func setFavorite(_ isFavorite: Bool, cityID: City.ID) {
+        if isFavorite && !favoriteIDs.contains(cityID) {
+            favoriteIDs.append(cityID)
+        } else if !isFavorite {
+            favoriteIDs.removeAll(where: { $0 == cityID})
+        }
+    }
+    
     /// All the cities in the list
     public var allCities: [City] = []
 

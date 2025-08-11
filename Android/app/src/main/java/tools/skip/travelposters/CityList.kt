@@ -20,11 +20,7 @@ fun CityList(padding: PaddingValues) {
         for (city in cityManager.allCities) {
             item {
                 CityPoster(city, isFavorite = { cityManager.favoriteIDs.contains(city.id) }, setFavorite = { isFavorite ->
-                    if (isFavorite && !cityManager.favoriteIDs.contains(city.id)) {
-                        cityManager.favoriteIDs.append(city.id)
-                    } else if (!isFavorite) {
-                        cityManager.favoriteIDs.removeAll(where = { it == city.id })
-                    }
+                    cityManager.setFavorite(isFavorite, city.id)
                 })
             }
         }

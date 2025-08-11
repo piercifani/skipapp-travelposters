@@ -19,11 +19,7 @@ struct CityListView: View {
         Binding(get: {
             cityManager.favoriteIDs.contains(city.id)
         }, set: { isFavorite in
-            if isFavorite && !cityManager.favoriteIDs.contains(city.id) {
-                cityManager.favoriteIDs.append(city.id)
-            } else if !isFavorite {
-                cityManager.favoriteIDs.removeAll(where: { $0 == city.id })
-            }
+            cityManager.setFavorite(isFavorite, cityID: city.id)
         })
     }
 }
