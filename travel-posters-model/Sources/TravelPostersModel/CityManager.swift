@@ -11,11 +11,15 @@ public class CityManager {
     static let localCitiesURL: URL = Bundle.module.url(forResource: "Cities", withExtension: "json")!
 
     /// The JSON containing the user-selected list of favorite city IDs
-    #if os(Android)
-    static let favoritesURL: URL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("favorites.json")
-    #else
-    static let favoritesURL: URL = URL.documentsDirectory.appendingPathComponent("favorites.json")
-    #endif
+    static let favoritesURL: URL = {
+        #if os(Android)
+        let baseURL = URL.applicationSupportDirectory
+        #else
+        let baseURL = URL.documentsDirectory
+        #endif
+        return baseURL.appendingPathComponent("favorites.json")
+    }()
+
     /// The app-wide singleton `CityManager`
     public static let shared = CityManager()
 
